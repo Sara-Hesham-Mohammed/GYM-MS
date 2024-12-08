@@ -20,7 +20,8 @@ public class Admin extends User {
 
     // Public method to get the singleton instance
     public static Admin getAdminInstance(String name, String email) {
-    
+        
+        return null;
     }
 
     // Method to send notifications
