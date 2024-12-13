@@ -10,6 +10,6 @@ package Server;
  */
 public interface MembershipStatus {
     
-    public void changeStatus(int id,String status);
+    public void changeStatus(Member m);
     
 }

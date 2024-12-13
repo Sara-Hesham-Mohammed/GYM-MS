@@ -55,6 +55,12 @@ public class Database {
         Member result = gson.fromJson(doc.toJson(), Member.class);
         return result;
     }
+    
+     public Member getMemberByID(int id) {
+        Document doc = collection.find(Filters.eq("id", id)).first();
+        Member result = gson.fromJson(doc.toJson(), Member.class);
+        return result;
+    }
 
     public void updateMember(Member s) {
         Document doc = Document.parse(gson.toJson(s));
