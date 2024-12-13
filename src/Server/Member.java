@@ -22,10 +22,18 @@ public class Member extends User{
     private ArrayList<Payment> payments;
 
     public Member() {
+        
+        
     }
 
     
-    public Member(MembershipPlan membershipPlan, int attendanceRecord, Locker locker, HealthInfo healthInfo, GymClass gymClass, WorkoutPlan workoutPlan, NutritionPlan nutritionPlan, ArrayList<Booking> bookings, ArrayList<Payment> payments) {
+    //temporary code for constructor bc idk how it is done
+    public Member(int id, String name, int age, String email, String username, String password, String gender,
+    MembershipPlan membershipPlan, int attendanceRecord, Locker locker, HealthInfo healthInfo,
+    GymClass gymClass, WorkoutPlan workoutPlan, NutritionPlan nutritionPlan, ArrayList<Booking> bookings, 
+    ArrayList<Payment> payments) {
+        
+        super(id,  name,  age,  email,  username,  password,  gender);
         this.membershipPlan = membershipPlan;
         this.attendanceRecord = attendanceRecord;
         this.locker = locker;

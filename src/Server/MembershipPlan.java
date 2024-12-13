@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Sara
  */
 class MembershipPlan {
-      private int planId;
+    private int planId;
     private String planName;
     private String description;
     private float price;
@@ -118,6 +118,9 @@ class MembershipPlan {
         this.paid = paid;
     }
     
+    public void changeStatus(int id, MembershipStatus memStatus){
+        memStatus.changeStatus(id, status);
+    }
     
     
 }

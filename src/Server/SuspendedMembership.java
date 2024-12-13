@@ -12,7 +12,9 @@ public class SuspendedMembership implements MembershipStatus {
 
     @Override
     public void changeStatus(int id, String status) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //collection of users
+        MembershipPlan p = 
+        
     }
     
 }

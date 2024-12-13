@@ -11,6 +11,5 @@ package Server;
 public interface MembershipStatus {
     
     public void changeStatus(int id,String status);
-    //double check the int, idk what it's for
     
 }
