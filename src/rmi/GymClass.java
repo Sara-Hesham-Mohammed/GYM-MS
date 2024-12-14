@@ -9,11 +9,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import java.util.List;
+
 /**
  *
  * @author Sara
  */
-public class GymClass {
+public class GymClass implements Subject{
 
     private int classId;
     private String className;
@@ -22,6 +24,7 @@ public class GymClass {
     private Calendar endTime;
     private String duration;
     private ArrayList<Member> enrolledMembers;
+    private List<Observer> observers = new ArrayList<>(); // List of registered observers
 
     public GymClass() {
 
@@ -51,6 +54,7 @@ public class GymClass {
 
     public void setClassName(String className) {
         this.className = className;
+        notifyObservers("Class name updated to: " + className);
     }
 
     public String getInstructorName() {
@@ -67,6 +71,7 @@ public class GymClass {
 
     public void setInstructorName(String instructorName) {
         this.instructorName = instructorName;
+        notifyObservers("Instructor updated to: " + instructorName);
     }
 
     public Calendar getStartTime() {
@@ -75,6 +80,8 @@ public class GymClass {
 
     public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
+        
+        notifyObservers("Start time updated to: " + startTime);
     }
 
     public Calendar getEndTime() {
@@ -83,6 +90,7 @@ public class GymClass {
 
     public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
+         notifyObservers("End time updated to: " + endTime);
     }
 
     public String getDuration() {
@@ -91,6 +99,7 @@ public class GymClass {
 
     public void setDuration(String duration) {
         this.duration = duration;
+        notifyObservers("Duration updated to: " + duration);
     }
 
     public void manageClass(Member member) {
@@ -117,5 +126,28 @@ public class GymClass {
         System.out.println("End Time: " + (endTime != null ? sdf.format(endTime.getTime()) : "Not Set"));
         System.out.println("Duration: " + duration);
     }
+
+
+    @Override
+    public void registerObserver(Observer o) {
+        if (!observers.contains(o)) {
+            observers.add(o);
+        }
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
+    }
+
+
+
 
 }
