@@ -7,7 +7,8 @@ import java.util.Calendar;
  *
  * @author Sara
  */
-class MembershipPlan{
+class MembershipPlan {
+
     private int planId;
     private String planName;
     private String description;
@@ -140,9 +141,78 @@ class MembershipPlan{
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
-    
+
     //this needs to run periodically
-    public void changeStatus(Member m){
+    public void changeStatus(Member m) {
         this.membershipStatus.changeStatus(m);
     }
+
+    public boolean inActivePeriod() {
+
+        Calendar currentDate = Calendar.getInstance(); // Changed to Calendar
+        boolean isActivePeriod;
+
+        isActivePeriod = (currentDate.after(this.startDate) || currentDate.equals(this.startDate)) && currentDate.before(this.endDate);
+        
+        return isActivePeriod;
+
+    }
+
+    public boolean inGracePeriod() {
+        final int GRACE_PERIOD = 30;
+        Calendar currentDate = Calendar.getInstance(); // Changed to Calendar
+
+        Calendar finalEndDate = (Calendar) this.endDate.clone();
+        finalEndDate.add(Calendar.DAY_OF_MONTH, GRACE_PERIOD);
+
+        boolean isGracePeriod;
+
+        if ((currentDate.equals(this.endDate) || currentDate.after(this.endDate)) && currentDate.before(finalEndDate)) {
+
+            isGracePeriod = true;
+            
+        } else if (currentDate.equals(finalEndDate) || currentDate.after(finalEndDate)) {
+            isGracePeriod = false;
+        } else {
+            return false;
+        }
+        
+        return isGracePeriod;
+
+    }
+
+    public boolean isHalfPast() {
+        Calendar currentDate = Calendar.getInstance();
+        //constants
+        final int DAYS_AVG = 30;
+
+        //getting duration in days to calc half the duration
+        int durationInDays = this.duration * DAYS_AVG;
+        int halfDuration = Math.floorDiv(durationInDays, 2);// gets the lower num
+
+        //date of half duration is the startDate + half the duration
+        Calendar halfDurationDate = (Calendar) this.startDate.clone();
+        halfDurationDate.add(Calendar.DAY_OF_MONTH, halfDuration);
+        
+        
+        boolean isHalfPast =false;
+        
+        if(currentDate.after(halfDurationDate) || currentDate.equals(halfDurationDate)){
+            isHalfPast = true;
+        }
+        
+        return isHalfPast;
+        
+        
+    }
+
+    public int getAttendanceAvg() {
+
+        // assume avg attendance is once a week for simplicity
+        final int WEEKS_PER_MONTH = 4;
+        int durationInWeeks = this.duration * WEEKS_PER_MONTH;
+        final int ATTENDANCE_AVG = durationInWeeks;
+        return ATTENDANCE_AVG;
+    }
+
 }

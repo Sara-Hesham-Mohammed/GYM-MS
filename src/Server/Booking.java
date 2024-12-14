@@ -6,6 +6,7 @@ package Server;
 
 import java.util.Date;
 import java.time.*;
+import java.util.Calendar;
 
 /**
  *
@@ -15,16 +16,16 @@ public class Booking {
     
     private int bookingID;
     private int userID;
-    private Date bookingDate;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Calendar bookingDate;
+    private Calendar startTime;
+    private Calendar endTime;
     private BookingBehavior bookingType;
     private boolean paid;
 
     public Booking() {
     }
 
-    public Booking(int bookingID, int userID, Date bookingDate, LocalDateTime startTime, LocalDateTime endTime, BookingBehavior bookingType, boolean paid) {
+    public Booking(int bookingID, int userID, Calendar bookingDate, Calendar startTime, Calendar endTime, BookingBehavior bookingType, boolean paid) {
         this.bookingID = bookingID;
         this.userID = userID;
         this.bookingDate = bookingDate;
@@ -50,27 +51,27 @@ public class Booking {
         this.userID = userID;
     }
 
-    public Date getBookingDate() {
+    public Calendar getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(Calendar bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public LocalDateTime getStartTime() {
+    public Calendar getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public Calendar getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
     }
 

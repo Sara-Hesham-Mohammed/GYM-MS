@@ -5,6 +5,7 @@
 package Server;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  *
@@ -14,8 +15,8 @@ public class GymClass {
     private int classId;
     private String className;
     private String instructorName;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Calendar startTime;
+    private Calendar endTime;
     private String duration;
 
     public GymClass(){
@@ -24,7 +25,7 @@ public class GymClass {
     
     
 
-    public GymClass(int classId, String className, String instructorName, LocalDateTime startTime, LocalDateTime endTime, String duration) {
+    public GymClass(int classId, String className, String instructorName, Calendar startTime, Calendar endTime, String duration) {
         this.classId = classId;
         this.className = className;
         this.instructorName = instructorName;
@@ -57,19 +58,19 @@ public class GymClass {
         this.instructorName = instructorName;
     }
 
-    public LocalDateTime getStartTime() {
+    public Calendar getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public Calendar getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
     }
 

@@ -17,7 +17,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,9 +27,7 @@ public class Database {
     private MongoClient client= new MongoClient("localhost",27017);
     private MongoDatabase database;
     private MongoCollection<Document> collection;
-    private Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-            .create();
+    private Gson gson = new Gson();
 
     public Database() {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");

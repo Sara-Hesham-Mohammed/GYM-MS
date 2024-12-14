@@ -5,6 +5,7 @@
 package Server;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Member extends User{
     private NutritionPlan nutritionPlan;
     private ArrayList<Booking> bookings;
     private ArrayList<Payment> payments;
+    private Calendar joinDate = Calendar.getInstance();
 
     public Member() {
         
@@ -31,7 +33,7 @@ public class Member extends User{
     public Member(int id, String name, int age, String email, String username, String password, String gender,
     MembershipPlan membershipPlan, int attendanceRecord, Locker locker, HealthInfo healthInfo,
     GymClass gymClass, WorkoutPlan workoutPlan, NutritionPlan nutritionPlan, ArrayList<Booking> bookings, 
-    ArrayList<Payment> payments) {
+    ArrayList<Payment> payments, Calendar joinDate) {
         
         super(id,  name,  age,  email,  username,  password,  gender);
         this.membershipPlan = membershipPlan;
@@ -43,6 +45,7 @@ public class Member extends User{
         this.nutritionPlan = nutritionPlan;
         this.bookings = bookings;
         this.payments = payments;
+        this.joinDate = joinDate;
     }
 
     public MembershipPlan getMembershipPlan() {
@@ -99,6 +102,14 @@ public class Member extends User{
 
     public void setNutritionPlan(NutritionPlan nutritionPlan) {
         this.nutritionPlan = nutritionPlan;
+    }
+
+    public Calendar getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(Calendar joinDate) {
+        this.joinDate = joinDate;
     }
 
     public ArrayList<Booking> getBookings() {

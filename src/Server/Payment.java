@@ -5,6 +5,7 @@
 package Server;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  *
@@ -13,14 +14,14 @@ import java.time.LocalDateTime;
 
 public class Payment {
     private int paymentId;
-    private LocalDateTime transactionDate;
+    private Calendar transactionDate;
     private PaymentBehaviour paymentMethod;
     private float amount;
 
     public Payment() {
     }
 
-    public Payment(int paymentId, LocalDateTime transactionDate, PaymentBehaviour paymentMethod, float amount) {
+    public Payment(int paymentId, Calendar transactionDate, PaymentBehaviour paymentMethod, float amount) {
         this.paymentId = paymentId;
         this.transactionDate = transactionDate;
         this.paymentMethod = paymentMethod;
@@ -35,11 +36,11 @@ public class Payment {
         this.paymentId = paymentId;
     }
 
-    public LocalDateTime getTransactionDate() {
+    public Calendar getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
+    public void setTransactionDate(Calendar transactionDate) {
         this.transactionDate = transactionDate;
     }
 
