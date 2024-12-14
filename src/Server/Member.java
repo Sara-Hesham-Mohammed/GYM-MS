@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Server;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import static java.util.Collections.list;
@@ -24,9 +22,17 @@ public class Member extends User  {
     private ArrayList<Booking> bookings;
     private ArrayList<Payment> payments;
     private Calendar joinDate = Calendar.getInstance();
+    private Reservation reservations;
+    
+    private boolean nutritionPlanNum; // true for 1, false for 2
+    private String fitnessGoal;
+    private int trainingLevel;
+    private Facility facilities;
+    private String dateOfBirth; 
 
     public Member() {
 
+this.reservations = new Reservation();
     }
 
     //temporary code for constructor bc idk how it is done
@@ -36,6 +42,9 @@ public class Member extends User  {
             ArrayList<Payment> payments, Calendar joinDate) {
 
         super(id, name, age, email, username, password, gender);
+        this.fitnessGoal = fitnessGoal;
+        this.trainingLevel = trainingLevel;
+        this.dateOfBirth = dateOfBirth; 
         this.membershipPlan = membershipPlan;
         this.attendanceRecord = attendanceRecord;
         this.locker = locker;
@@ -60,6 +69,38 @@ public class Member extends User  {
         return attendanceRecord;
     }
 
+    
+    public String getFitnessGoal() {
+        return fitnessGoal;
+    }
+
+    public void setFitnessGoal(String fitnessGoal) {
+        this.fitnessGoal = fitnessGoal;
+    }
+
+    public int getTrainingLevel() {
+        return trainingLevel;
+    }
+
+    public void setTrainingLevel(int trainingLevel) {
+        this.trainingLevel = trainingLevel;
+    }
+
+    public Facility getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(Facility facilities) {
+        this.facilities = facilities;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;  // Return date of birth as String
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
     public void setAttendanceRecord(int attendanceRecord) {
         this.attendanceRecord = attendanceRecord;
     }
@@ -148,5 +189,28 @@ public class Member extends User  {
 
     }
    
+
+    // Methods related to reservations
+    public ArrayList<Facility> viewFacilities(int candidateID) {
+        return reservations.getFacility().viewMyFacilities(candidateID);
+    }
+
+    public boolean makeReservation() {
+        return reservations.makeReservation(this);
+    }
+
+    // Implementation of Observer interface
+    @Override
+    public void update(String message) {
+        // Print or handle the received notification
+        System.out.println("Member ID: " + memberID + " received update: " + message);
+        // Optionally, add logic to update member's state or display the message in the GUI
+    }
+
+    // Request nutrition plan
+    public void requestNutritionPlan() {
+        Database.getDatabase().requestNutritionPlan(this); // Pass the current member instance to the database
+    }
+
 
 }

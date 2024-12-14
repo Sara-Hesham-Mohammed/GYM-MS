@@ -1,40 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Server;
 
 /**
  *
  * @author Sara
  */
-public class Nutritionist {
-    private ROIMember ROIMember; 
-    private NutritionPlan nuturitionPlan;
+public class Nutritionist implements Observer {
+    private ROIMember roiMember;  // Fixed spelling: 'ROIMember'
+    private NutritionPlan nutritionPlan;
+    private NutritionPlanBehaviour plan;  // 'plan' is used to provide nutrition plan
 
+    // Default constructor
     public Nutritionist() {
     }
 
-    public Nutritionist(ROIMember ROIMember, NutritionPlan nuturitionPlan) {
-        this.ROIMember = ROIMember;
-        this.nuturitionPlan = nuturitionPlan;
+    // Constructor with parameters
+    public Nutritionist(ROIMember roiMember, NutritionPlan nutritionPlan) {
+        this.roiMember = roiMember;
+        this.nutritionPlan = nutritionPlan;
     }
 
+    // Getters and setters
     public ROIMember getROIMember() {
-        return ROIMember;
+        return roiMember;
     }
 
-    public void setROIMember(ROIMember ROIMember) {
-        this.ROIMember = ROIMember;
+    public void setROIMember(ROIMember roiMember) {
+        this.roiMember = roiMember;
     }
 
-    public NutritionPlan getNuturitionPlan() {
-        return nuturitionPlan;
+    public NutritionPlan getNutritionPlan() {
+        return nutritionPlan;
     }
 
-    public void setNuturitionPlan(NutritionPlan nuturitionPlan) {
-        this.nuturitionPlan = nuturitionPlan;
+    public void setNutritionPlan(NutritionPlan nutritionPlan) {
+        this.nutritionPlan = nutritionPlan;
     }
-    
-    
+
+    // Implementation of Observer interface
+    @Override
+    public void update(String message) {
+        // Handle the received notification
+        System.out.println("Nutritionist received update: " + message);
+        // Optionally, update the GUI or perform additional actions based on the notification
+    }
+
+    // Nutrition Plan Behaviour Methods
+    public NutritionPlanBehaviour getPlan() {
+        return plan;
+    }
+
+    public void setPlan(NutritionPlanBehaviour plan) {
+        this.plan = plan;
+    }
+
+    // Method to provide the nutrition plan
+    public boolean provideNutritionPlan(User u) {
+        if (plan != null) {
+            return plan.provideNutritionPlan(u);  // Return the result from the plan
+        }
+        return false;  // Return false if no plan is set
+    }
 }
