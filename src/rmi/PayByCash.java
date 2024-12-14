@@ -8,7 +8,10 @@ package rmi;
  *
  * @author Sara
  */
-public interface PaymentBehaviour {
-    void makePayment(float amount);
+public class PayByCash implements PaymentBehaviour {
+    @Override
+    public void makePayment(float amount) {
+        System.out.println("Processing cash payment of: $" + amount);
+        // Additional logic for cash payment
+    }
 }
-

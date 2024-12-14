@@ -9,5 +9,8 @@ package rmi;
  * @author Sara
  */
 public interface ROIMember {
+     
+    String viewMemberProfile();  
+    String viewHealthInfo();
     
 }

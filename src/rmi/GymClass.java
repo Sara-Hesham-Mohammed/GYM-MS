@@ -40,6 +40,12 @@ public class GymClass implements Subject{
         this.enrolledMembers = enrolledMembers;
     }
 
+    public GymClass(int i, String yoga, String john_Doe, LocalDateTime of, LocalDateTime of0, String _hour) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+
     public int getClassId() {
         return classId;
     }

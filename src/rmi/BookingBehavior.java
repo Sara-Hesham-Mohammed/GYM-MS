@@ -10,4 +10,6 @@ package rmi;
  */
 public interface BookingBehavior {
     
+    public void makeBooking(int userId);
+    
 }

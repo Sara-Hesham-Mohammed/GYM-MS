@@ -13,6 +13,7 @@ public class Admin extends User {
     private Locker locker;
     private Facility Facilities;
 
+    private Supplier supplier;
     // List to store observers
     private List<Observer> observers;
 
@@ -101,6 +102,19 @@ public class Admin extends User {
     public void notifyObservers(String message) {
         for (Observer observer : observers) {
             observer.update(message); // Notify each observer about the update
+        }
+    }
+    
+    
+    // Function to request equipment from the supplier
+    public void requestEquipment(Equipment equipment) {
+        System.out.println(getName() + " is requesting the following equipment: " + equipment.getName());
+        
+        // Make sure the supplier is available
+        if (supplier != null) {
+            supplier.processRequest(equipment); 
+        } else {
+            System.out.println("No supplier available to process the request.");
         }
     }
 }

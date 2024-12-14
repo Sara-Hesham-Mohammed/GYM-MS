@@ -11,54 +11,53 @@ import java.util.Calendar;
  *
  * @author Sara
  */
-
 public class Payment {
-    private int paymentId;
-    private Calendar transactionDate;
-    private PaymentBehaviour paymentMethod;
+
+    private int paymentID;
+    private String transactionDate;
+    private String paymentMethod; // e.g., "Card" or "Cash"
     private float amount;
+
+    private PaymentBehaviour paymentBehaviour;
+
+    // Constructor
+    public Payment(int paymentID, String transactionDate, float amount) {
+        this.paymentID = paymentID;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+    }
 
     public Payment() {
     }
 
-    public Payment(int paymentId, Calendar transactionDate, PaymentBehaviour paymentMethod, float amount) {
-        this.paymentId = paymentId;
-        this.transactionDate = transactionDate;
-        this.paymentMethod = paymentMethod;
-        this.amount = amount;
+    Payment(int bookingID, Calendar bookingDate, int i) {
+        
+        }
+
+    // Setter to dynamically change the payment behaviour
+    public void setPaymentMethod(PaymentBehaviour paymentBehaviour) {
+        this.paymentBehaviour = paymentBehaviour;
     }
 
-    public int getPaymentId() {
-        return paymentId;
+    // Method to execute the payment
+    public void makePayment() {
+        if (paymentBehaviour != null) {
+            paymentBehaviour.makePayment(amount);
+        } else {
+            System.out.println("Payment method not set.");
+        }
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    // Getters and setters 
+    public int getPaymentID() {
+        return paymentID;
     }
 
-    public Calendar getTransactionDate() {
+    public String getTransactionDate() {
         return transactionDate;
-    }
-
-    public void setTransactionDate(Calendar transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public PaymentBehaviour getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentBehaviour paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public float getAmount() {
         return amount;
     }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
-    
-    
 }
