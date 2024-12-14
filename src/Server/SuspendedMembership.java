@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Server;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -12,25 +9,26 @@ import java.time.LocalDateTime;
  */
 public class SuspendedMembership implements MembershipStatus {
 
-    public static final long GRACE_PERIOD = 30 ;
+    public static final long GRACE_PERIOD = 30;
+
+    Calendar currentDate = Calendar.getInstance(); // Changed to Calendar
+
     @Override
     public void changeStatus(Member m) {
-        //collection of users
-        
         MembershipPlan p = m.getMembershipPlan();
-        LocalDateTime currentDate = LocalDateTime.now();
-        LocalDateTime finalEndDate = p.getEndDate().plusDays(GRACE_PERIOD);
-        //if current date is = or more than end date + grace period
-        if(currentDate.isEqual(finalEndDate) || currentDate.isAfter(finalEndDate)){
+        
+        // Get the end date from the membership plan and add the grace period
+        Calendar finalEndDate = p.getEndDate();
+        finalEndDate.add(Calendar.DAY_OF_MONTH, (int) GRACE_PERIOD); // Add grace period days
+
+        // Check if current date is equal to or after final end date + grace period
+        if ((currentDate.equals(finalEndDate) || currentDate.after(finalEndDate)) && !p.isPaid()) {
             p.setMembershipStatus(this);
             p.setStatus("Suspended");
             System.out.println("Member has now been suspended.");
-        }
-        else{
+        } else {
             System.out.println("Member cannot be suspended. Conditions do not apply.");
         }
-        
-        
     }
-    
+
 }

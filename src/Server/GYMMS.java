@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package Server;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -29,7 +27,7 @@ public class GYMMS {
         ArrayList<Booking> bookings = new ArrayList<>(); // placeholder, adjust as needed
         ArrayList<Payment> payments = new ArrayList<>(); // placeholder, adjust as needed
 
-// Member initialization
+        // Member initialization
         Member mariam = new Member(
                 1, // id
                 "Mariam Karim", // name
@@ -58,7 +56,7 @@ public class GYMMS {
         ArrayList<Booking> bookingsY = new ArrayList<>(); // placeholder
         ArrayList<Payment> paymentsY = new ArrayList<>(); // placeholder
 
-// Member initialization
+        // Member initialization
         Member youssef = new Member(
                 2, // id
                 "Youssef Adel", // name
@@ -78,29 +76,18 @@ public class GYMMS {
                 paymentsY // payments
         );
 
-        //Insert Question 1
-        db.insertMember(mariam);
-        db.insertMember(youssef);
-        
-        
-        //Update Question 2
-        Member s = db.getMemberByMail("AdelY1@gmail.com");       
-        db.updateMember(s);
 
-        
-        
-        //Update2 Question 3
-        db.updateMemberEmail("Mairam Karim", "MariamKarim50@yahoo.com");
-       
-        //Retrieve Question 4
-        ArrayList<Member> member = db.getMemberbyAge(26);
+        // Setting start and end dates using Calendar
+        membershipPlan.setStartDate(2024,10,13);
+        membershipPlan.setEndDate(2025,11,1);
+        membershipPlan.setPaid(true);
 
-        for (int i = 0; i < member.size(); i++) {
-            System.out.println(member.get(i).toString());
-        }
-       
-       //Delete Question 5
-        db.deleteMember("Youssef Adel");
+        membershipPlan.changeStatus(mariam);
+        
+        System.out.println(membershipPlan);
+
+        // Update membership plan in database
+        //db.updateMembershipPlan(1, membershipPlan);
     }
 
 }

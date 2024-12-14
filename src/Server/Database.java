@@ -72,6 +72,12 @@ public class Database {
 
         collection.updateOne(Filters.eq("name", name), Updates.set("email", newEmail));
     }
+    
+    public void updateMembershipPlan(int usrID, MembershipPlan newPlan) {
+
+        collection.updateOne(Filters.eq("id", usrID), Updates.set("membershipPlan", newPlan));
+    }
+
 
     //Question 5
     public void deleteMember(String name) {
