@@ -15,7 +15,7 @@ package Server;
 public class ActiveMembership implements MembershipStatus{
 
     @Override
-    public void changeStatus(Member m) {
+    public void changeStatus(int id, String status) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

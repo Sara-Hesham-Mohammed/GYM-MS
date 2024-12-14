@@ -4,7 +4,6 @@
  */
 package Server;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -12,12 +11,12 @@ import java.util.Date;
  * @author Sara
  */
 class MembershipPlan {
-    private int planId;
+      private int planId;
     private String planName;
     private String description;
     private float price;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private Date startDate;
+    private Date endDate;
     private String membershipType;
     private MembershipStatus membershipStatus;
     private String status;
@@ -26,7 +25,7 @@ class MembershipPlan {
     public MembershipPlan() {
     }
 
-    public MembershipPlan(int planId, String planName, String description, float price, LocalDateTime startDate, LocalDateTime endDate, String membershipType, MembershipStatus membershipStatus, String status, boolean paid) {
+    public MembershipPlan(int planId, String planName, String description, float price, Date startDate, Date endDate, String membershipType, MembershipStatus membershipStatus, String status, boolean paid) {
         this.planId = planId;
         this.planName = planName;
         this.description = description;
@@ -71,19 +70,19 @@ class MembershipPlan {
         this.price = price;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -119,9 +118,6 @@ class MembershipPlan {
         this.paid = paid;
     }
     
-    public void changeStatus(Member m){
-        membershipStatus.changeStatus(m);
-    }
     
     
 }

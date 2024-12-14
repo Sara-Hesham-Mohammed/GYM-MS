@@ -1,29 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Server;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Sara
- */
-public class GymClass {
+public class GymClass implements Subject {
     private int classId;
     private String className;
     private String instructorName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String duration;
+    private List<Observer> observers = new ArrayList<>(); // List of registered observers
 
-    public GymClass(){
-        
+    public GymClass() {
     }
-    
-    
 
+    // Parameterized constructor
     public GymClass(int classId, String className, String instructorName, LocalDateTime startTime, LocalDateTime endTime, String duration) {
         this.classId = classId;
         this.className = className;
@@ -47,6 +40,7 @@ public class GymClass {
 
     public void setClassName(String className) {
         this.className = className;
+        notifyObservers("Class name updated to: " + className);
     }
 
     public String getInstructorName() {
@@ -55,6 +49,7 @@ public class GymClass {
 
     public void setInstructorName(String instructorName) {
         this.instructorName = instructorName;
+        notifyObservers("Instructor updated to: " + instructorName);
     }
 
     public LocalDateTime getStartTime() {
@@ -63,6 +58,7 @@ public class GymClass {
 
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
+        notifyObservers("Start time updated to: " + startTime);
     }
 
     public LocalDateTime getEndTime() {
@@ -71,6 +67,7 @@ public class GymClass {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+        notifyObservers("End time updated to: " + endTime);
     }
 
     public String getDuration() {
@@ -79,7 +76,33 @@ public class GymClass {
 
     public void setDuration(String duration) {
         this.duration = duration;
+        notifyObservers("Duration updated to: " + duration);
     }
-    
-    
+
+    @Override
+    public void registerObserver(Observer o) {
+        if (!observers.contains(o)) {
+            observers.add(o);
+        }
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
+    }
+
+    /*public boolean updateGymClassDetails() {
+        boolean isUpdated = Database.getDatabase().updateGymClassDetails(classId);
+        if (isUpdated) {
+            notifyObservers("GymClass details have been updated for class: " + className);
+        }
+        return isUpdated;
+    }*/
 }
