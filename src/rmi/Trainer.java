@@ -8,7 +8,7 @@ package rmi;
  *
  * @author Sara
  */
-public class Trainer extends User{
+public class Trainer extends User implements Observer{
     private String specialty;
     private Member member;
      private GymClass gymClass;  // Optional: Link to a GymClass if the trainer is observing classes

@@ -1,4 +1,4 @@
-package Server;
+package rmi;
 
 public interface Subject {
     void registerObserver(Observer o);

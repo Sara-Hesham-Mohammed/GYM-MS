@@ -1,4 +1,4 @@
-package Server;
+package rmi;
 
 import java.util.ArrayList;
 import org.bson.Document;

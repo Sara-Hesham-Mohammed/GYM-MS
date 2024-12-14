@@ -11,6 +11,7 @@ package rmi;
 public class Nutritionist implements Observer {
     private ROIMember ROIMember; 
     private NutritionPlan nuturitionPlan;
+    private NutritionPlanBehaviour plan; 
 
     public Nutritionist() {
     }

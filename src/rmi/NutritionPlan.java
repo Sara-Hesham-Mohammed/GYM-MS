@@ -4,6 +4,11 @@
  */
 package rmi;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  *
  * @author Sara
@@ -80,7 +85,7 @@ public boolean provideNutritionPlan(User u) {
             // Conditions to provide a nutrition plan: age >= 16 and training level >= 5
             if (years >= 16 && m.getTrainingLevel() >= 5) {
                 // Update the approval in the database
-                Database.getDatabase().updateApproval(m.getMemberID());
+                Database.getDatabase().updateApproval(m.getId());
                 return true; // Plan provided successfully
             } else {
                 System.out.println("Conditions not met: age or training level insufficient.");

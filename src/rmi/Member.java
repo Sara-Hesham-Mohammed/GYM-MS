@@ -13,7 +13,7 @@ import static java.util.Collections.list;
  *
  * @author Sara
  */
-public class Member extends User implements MemberInterface {
+public class Member extends User implements MemberInterface, Observer{
 
     private MembershipPlan membershipPlan;
     private int attendanceRecord;
@@ -26,7 +26,7 @@ public class Member extends User implements MemberInterface {
     private ArrayList<Payment> payments;
     private Calendar joinDate = Calendar.getInstance();
     private Reservation reservations;
-    
+    private String memprogress;
     private boolean nutritionPlanNum; // true for 1, false for 2
     private String fitnessGoal;
     private int trainingLevel;
@@ -210,17 +210,95 @@ this.reservations = new Reservation();
         return reservations.makeReservation(this);
     }
 
+    public Reservation getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Reservation reservations) {
+        this.reservations = reservations;
+    }
+
+    public boolean isNutritionPlanNum() {
+        return nutritionPlanNum;
+    }
+
+    public void setNutritionPlanNum(boolean nutritionPlanNum) {
+        this.nutritionPlanNum = nutritionPlanNum;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    
+
     // Implementation of Observer interface
     @Override
     public void update(String message) {
         // Print or handle the received notification
-        System.out.println("Member ID: " + memberID + " received update: " + message);
+        System.out.println("Member ID: " + this.getId() + " received update: " + message);
         // Optionally, add logic to update member's state or display the message in the GUI
     }
 
     // Request nutrition plan
     public void requestNutritionPlan() {
         Database.getDatabase().requestNutritionPlan(this); // Pass the current member instance to the database
+    }
+
+    Object getMemberID() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 
