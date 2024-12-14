@@ -20,7 +20,9 @@ public class GYMMS {
         MembershipPlan membershipPlan = new MembershipPlan(); // placeholder
         Locker lockerY = new Locker(); // placeholder
         HealthInfo healthInfoY = new HealthInfo(); // placeholder
-        GymClass gymClassY = new GymClass(); // placeholder
+        GymClass gymClassY = new GymClass();
+        GymClass gymClassX = new GymClass(); // placeholder
+        ArrayList<GymClass> = new 
         WorkoutPlan workoutPlanY = new WorkoutPlan(); // placeholder
         NutritionPlan nutritionPlanY = new NutritionPlan(); // placeholder
         ArrayList<Booking> bookingsY = new ArrayList<>(); // placeholder

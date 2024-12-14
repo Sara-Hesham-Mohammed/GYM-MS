@@ -6,17 +6,19 @@ package Server;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Collections.list;
 
 /**
  *
  * @author Sara
  */
-public class Member extends User{
+public class Member extends User  {
+
     private MembershipPlan membershipPlan;
     private int attendanceRecord;
     private Locker locker;
     private HealthInfo healthInfo;
-    private GymClass gymClass;
+    private ArrayList<GymClass> gymClasses;
     private WorkoutPlan workoutPlan;
     private NutritionPlan nutritionPlan;
     private ArrayList<Booking> bookings;
@@ -24,23 +26,21 @@ public class Member extends User{
     private Calendar joinDate = Calendar.getInstance();
 
     public Member() {
-        
-        
+
     }
 
-    
     //temporary code for constructor bc idk how it is done
     public Member(int id, String name, int age, String email, String username, String password, String gender,
-    MembershipPlan membershipPlan, int attendanceRecord, Locker locker, HealthInfo healthInfo,
-    GymClass gymClass, WorkoutPlan workoutPlan, NutritionPlan nutritionPlan, ArrayList<Booking> bookings, 
-    ArrayList<Payment> payments, Calendar joinDate) {
-        
-        super(id,  name,  age,  email,  username,  password,  gender);
+            MembershipPlan membershipPlan, int attendanceRecord, Locker locker, HealthInfo healthInfo,
+            ArrayList<GymClass> gymClasses, WorkoutPlan workoutPlan, NutritionPlan nutritionPlan, ArrayList<Booking> bookings,
+            ArrayList<Payment> payments, Calendar joinDate) {
+
+        super(id, name, age, email, username, password, gender);
         this.membershipPlan = membershipPlan;
         this.attendanceRecord = attendanceRecord;
         this.locker = locker;
         this.healthInfo = healthInfo;
-        this.gymClass = gymClass;
+        this.gymClasses = gymClasses;
         this.workoutPlan = workoutPlan;
         this.nutritionPlan = nutritionPlan;
         this.bookings = bookings;
@@ -80,12 +80,12 @@ public class Member extends User{
         this.healthInfo = healthInfo;
     }
 
-    public GymClass getGymClass() {
-        return gymClass;
+    public ArrayList<GymClass> getGymClasses() {
+        return gymClasses;
     }
 
-    public void setGymClass(GymClass gymClass) {
-        this.gymClass = gymClass;
+    public void setGymClasses(ArrayList<GymClass> gymClasses) {
+        this.gymClasses = gymClasses;
     }
 
     public WorkoutPlan getWorkoutPlan() {
@@ -127,10 +127,26 @@ public class Member extends User{
     public void setPayments(ArrayList<Payment> payments) {
         this.payments = payments;
     }
+
+    public void manageClass(GymClass gymClass) {
+        //add or delete the class
+        gymClass.manageClass(this);
+
+    }
+    
+    public void manageMemberProfile(){
     
     
-    
-    
-    
-    
+    }
+
+    public void viewAllEnrolledClasses() {
+
+        //for each gymclass in the arraylist, call the view fn
+        for (GymClass gc : gymClasses) {
+            gc.viewClassDetails(); 
+        }
+
+    }
+   
+
 }

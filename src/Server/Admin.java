@@ -4,21 +4,24 @@
  */
 package Server;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sara
  */
-public class Admin extends User{
+public class Admin extends User {
+
     private static Admin adminInstance;
-    private GymClass className;
+    private ArrayList<GymClass> gymClasses;//all the classes in the gym
     private Locker locker;
 
     public Admin() {
     }
 
-    
-    public Admin(GymClass className, Locker locker) {
-        this.className = className;
+    public Admin(ArrayList<GymClass> gymClasses, Locker locker, int id, String name, int age, String email, String username, String password, String gender) {
+        super(id, name, age, email, username, password, gender);
+        this.gymClasses = gymClasses;
         this.locker = locker;
     }
 
@@ -30,12 +33,12 @@ public class Admin extends User{
         Admin.adminInstance = adminInstance;
     }
 
-    public GymClass getClassName() {
-        return className;
+    public ArrayList<GymClass> getGymClasses() {
+        return gymClasses;
     }
 
-    public void setClassName(GymClass className) {
-        this.className = className;
+    public void setGymClasses(ArrayList<GymClass> gymClasses) {
+        this.gymClasses = gymClasses;
     }
 
     public Locker getLocker() {
@@ -45,8 +48,7 @@ public class Admin extends User{
     public void setLocker(Locker locker) {
         this.locker = locker;
     }
+
     
-    
-    
-    
+
 }
